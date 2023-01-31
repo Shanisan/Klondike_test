@@ -15,13 +15,16 @@ public class Loader : MonoBehaviour
     private AssetBundle assetBundle;
     string[] scenePaths;
 
-    IEnumerator LoadRemoteAssetBundle()
+    IEnumerator LoadRemoteLevel()
     {
         #region setup
-        string url = "file:///" + Application.dataPath + "/AssetBundles/" + assetBundleName;
+        string url =
+            "https://github.com/Shanisan/Klondike_test/blob/main/Assets/AssetBundles/remoteloading.remote?raw=true";
         var request
             = UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);
         #endregion
+
+
         #region fetching remote level
         AsyncOperation op = request.SendWebRequest();
         while (!op.isDone)
@@ -32,13 +35,14 @@ public class Loader : MonoBehaviour
         assetBundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
         scenePaths = assetBundle.GetAllScenePaths();
         #endregion
+
+
         loadingBar.fillRect.GetComponent<Image>().color = Color.red;
         loadingText.text = "Loading Scene...";
 
 
         #region loading downloaded level
         op = SceneManager.LoadSceneAsync(scenePaths[0]);
-
         while (!op.isDone)
         {
             loadingBar.value = Mathf.Clamp01(op.progress / 0.9f);
@@ -55,7 +59,7 @@ public class Loader : MonoBehaviour
         }
         loadingBar.fillRect.GetComponent<Image>().color = Color.blue;
         loadingText.text = "Downloading Assets...";
-        StartCoroutine(LoadRemoteAssetBundle());
+        StartCoroutine(LoadRemoteLevel());
 
     }
 }

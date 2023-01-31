@@ -1,12 +1,12 @@
-1. You need to implement 2 scenes: loading scene and main scene.
+✅1. You need to implement 2 scenes: loading scene and main scene.
 
-2. The loading scene should contain a logo (any picture) and a loading indicator of the main scene (any design is possible).
+✅2. The loading scene should contain a logo (any picture) and a loading indicator of the main scene (any design is possible).
 
-3. The loading scene must be placed in the application's build itself.
-4. The main scene must be located on a remote server and loaded at application startup.
+✅3. The loading scene must be placed in the application's build itself.
+✅4. The main scene must be located on a remote server and loaded at application startup.
 5. In the loading scene, the loading indicator must display the process of loading the main scene from the server. (If there is no internet, a "check connection" message must be displayed.)
-6. The main scene must contain one control: Color picker 
-When selecting a color, the color of the whole main scene background must be changed.
+✅6. The main scene must contain one control: Color picker 
+✅When selecting a color, the color of the whole main scene background must be changed.
 
-7. The default color of the main scene background should be green.
+✅7. The default color of the main scene background should be green.
 8. The default background color can be changed without reporting the new build.

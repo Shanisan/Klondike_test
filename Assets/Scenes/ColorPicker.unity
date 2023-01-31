@@ -1611,3 +1611,4 @@ MonoBehaviour:
   green: {fileID: 614587941}
   blue: {fileID: 1390422140}
   cam: {fileID: 785646168}
+  defaultColor: {r: 0, g: 1, b: 0, a: 0}

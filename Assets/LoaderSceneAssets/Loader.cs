@@ -9,6 +9,7 @@ public class Loader : MonoBehaviour
 {
 
     public Slider loadingBar;
+    private Vector2 loadingBarSize;
     public Text loadingText;
     private readonly string assetBundleName = "remoteloading.remote";
 
@@ -37,7 +38,7 @@ public class Loader : MonoBehaviour
         #endregion
 
 
-        loadingBar.fillRect.GetComponent<Image>().color = Color.red;
+        loadingBar.fillRect.GetComponent<Image>().color = Color.green;
         loadingText.text = "Loading Scene...";
 
 
@@ -51,15 +52,39 @@ public class Loader : MonoBehaviour
         #endregion
     }
 
+    private void CheckInternetThenLoad()
+    {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            loadingText.text = "No internet connection. " +
+                "Please enable Wifi or Mobile Data and tap anywhere to retry.";
+            loadingText.color = Color.red;
+        }
+        else
+        {
+            loadingBar.fillRect.GetComponent<Image>().color = Color.blue;
+            loadingText.text = "Downloading Assets...";
+            loadingText.color = Color.black;
+            StartCoroutine(LoadRemoteLevel());
+        }
+    }
+
     public void Start()
     {
         if (assetBundle != null)
         {
             assetBundle.Unload(false);
         }
-        loadingBar.fillRect.GetComponent<Image>().color = Color.blue;
-        loadingText.text = "Downloading Assets...";
-        StartCoroutine(LoadRemoteLevel());
 
+        CheckInternetThenLoad();
+        
+    }
+
+    public void Update()
+    {
+        if(Input.touchCount > 0)
+        {
+            CheckInternetThenLoad();
+        }
     }
 }

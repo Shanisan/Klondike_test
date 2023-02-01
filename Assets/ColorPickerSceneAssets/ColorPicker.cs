@@ -8,17 +8,13 @@ public class ColorPicker : MonoBehaviour
     public Slider red, green, blue;
     public Camera cam;
 
-    public Color defaultColor;
-
-
-
 
     // Start is called before the first frame update
     void Start()
     {
-        red.value = defaultColor.r;
-        green.value = defaultColor .g;
-        blue.value = defaultColor.b;
+        red.value = cam.backgroundColor.r;
+        green.value = cam.backgroundColor.g;
+        blue.value = cam.backgroundColor.b;
         cam.backgroundColor = new Color(red.value, green.value, blue.value);
     }
 

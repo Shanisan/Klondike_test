@@ -19,8 +19,8 @@ public class Loader : MonoBehaviour
     IEnumerator LoadRemoteLevel()
     {
         #region setup
-        string url =
-            "https://github.com/Shanisan/Klondike_test/blob/main/Assets/AssetBundles/remoteloading.remote?raw=true";
+        //The file is hosted on my personal Nextcloud so for testing you'll have to modify this URL
+        string url = "http://192.168.50.214/index.php/s/BA4QFx9ZDKTa2cQ/download/remoteloading.remote";
         var request
             = UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);
         #endregion
@@ -64,7 +64,7 @@ public class Loader : MonoBehaviour
         {
             loadingBar.fillRect.GetComponent<Image>().color = Color.blue;
             loadingText.text = "Downloading Assets...";
-            loadingText.color = Color.black;
+            loadingText.color = Color.white;
             StartCoroutine(LoadRemoteLevel());
         }
     }
